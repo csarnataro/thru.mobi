@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<script src="https://cdn.jsdelivr.net/npm/whatwg-fetch@3.0.0/dist/fetch.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@0.7.4/dist/tailwind.min.css" rel="stylesheet">
+
+<head>
+  <title>thru mobi</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body class="flex flex-col min-h-screen">
+  <main class="flex-grow">
+    <div class="container text-center m-auto px-4">
+      <p class="text-3xl font-light mt-32" id="quote"></p>
+      <p class="text-xl font-light mt-10" id="author"></p>
+    </div>
+  </main>
+  <footer>
+    <div class="flex justify-center p-2">
+      <span>Quotes by: </span>
+      <span class="ml-2"><a rel="noreferrer" target="_blank" href="https://programming-quotes-api.herokuapp.com/">
+          programming-quotes-api.herokuapp.com
+        </a>
+      </span>
+    </div>
+  </footer>
+</body>
+<script>
+  window.fetch("https://programming-quotes-api.herokuapp.com/quotes/random")
+    .then(function (response) {
+      return response.json()
+    })
+    .then(function (quote) {
+      document.getElementById('quote').innerHTML = quote.en
+      document.getElementById('author').innerHTML = '&mdash; ' + '<i>' + quote.author + '</i>'
+    })
+
+</script>
+
+</html>
